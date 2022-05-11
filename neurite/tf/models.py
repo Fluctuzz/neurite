@@ -622,8 +622,11 @@ def single_ae(enc_size,
         name = '%s_bn_ae_%s_dec' % (prefix, ae_type)
         last_tensor = KL.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
 
-    # create the model and retun
-    model = Model(inputs=input_tensor, outputs=[last_tensor], name=model_name)
+    # create the model and return
+    if do_vae:
+        model = Model(inputs=input_tensor, outputs=[last_tensor, mu_tensor, logvar_tensor], name=model_name)
+    else: 
+        model = Model(inputs=input_tensor, outputs=[last_tensor], name=model_name)
     return model
 
 
