@@ -321,8 +321,11 @@ def ae(nb_features,
         in_input_shape = None
         in_model = mid_ae_model
     else:
+      if do_vae:
         in_input_shape = mid_ae_model.output[0].shape.as_list()[1:]
-        in_model = None
+      else:
+        in_input_shape = mid_ae_model.output.shape.as_list()[1:]
+      in_model = None
     dec_model = conv_dec(nb_features,
                          in_input_shape,
                          nb_levels,
