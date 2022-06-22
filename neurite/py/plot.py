@@ -294,7 +294,7 @@ def flow(slices_in,           # the 2D slices
         if cmaps[i] is None:
             colormap = cm.winter
         else:
-            raise Exception("custom cmaps not currently implemented for plt.flow()")
+            colormap = cmaps[i]
 
         # show figure
         ax.quiver(u, v,
